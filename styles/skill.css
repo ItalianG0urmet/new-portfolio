@@ -80,3 +80,19 @@
 .skill-card.active .skill-details {
   max-height: 200px;
 }
+
+@media (max-width: 600px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    gap: 12px;
+  }
+  .skill-card {
+    min-height: 220px;
+  }
+  .skill-icon {
+    height: 55px;
+    width: 55px;
+    font-size: 2.5rem;
+  }
+}
