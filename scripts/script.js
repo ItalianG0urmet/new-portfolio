@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+  document.body.style.overflow = "hidden";
+  
   document.addEventListener("selectstart", function (event) {
     event.preventDefault();
   });
@@ -30,32 +32,97 @@ document.addEventListener("DOMContentLoaded", function () {
   var terminal = document.getElementById("terminal");
   var lines = [
     "System initialization...",
-    "Loading data...",
+    "Loading modules...",
     "Starting services...",
+    "Optimizing interfaces...",
     "Checking user's cool level...",
-    "the user is cool enough to enter",
+    "access granted: user is cool enough to enter",
+    "Welcome to my portfolio!"
   ];
+  
+  var animationCompleted = false;
+  
+  function skipAnimation() {
+    if (animationCompleted) return;
+    
+    var highestId = window.setTimeout(() => {}, 0);
+    for (var i = 0; i < highestId; i++) {
+      window.clearTimeout(i);
+    }
+    
+    terminal.innerHTML = "";
+    lines.forEach((text, index) => {
+      var lineElement = document.createElement("div");
+      lineElement.classList.add("terminal-line");
+      
+      if (index === lines.length - 1) {
+        lineElement.classList.add("terminal-welcome");
+      } else if (index === lines.length - 2) {
+        lineElement.classList.add("terminal-access");
+      } else {
+        lineElement.classList.add("terminal-prompt");
+      }
+      
+      lineElement.textContent = text;
+      terminal.appendChild(lineElement);
+    });
+    
+    setTimeout(() => {
+      completeAnimation();
+    }, 300);
+  }
+  
+  function completeAnimation() {
+    animationCompleted = true;
+    var overlay = document.getElementById("loadingOverlay");
+    overlay.classList.add("tv-off");
+    overlay.addEventListener("animationend", function () {
+      overlay.style.display = "none";
+      if (document.getElementById("content")) {
+        document.getElementById("content").style.display = "block";
+      }
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleKeydown);
+    });
+  }
+  
   var currentLine = 0;
   function typeLine(text, callback) {
     var i = 0;
     var lineElement = document.createElement("div");
+    lineElement.classList.add("terminal-line");
+    
+    if (currentLine === lines.length - 1) {
+      lineElement.classList.add("terminal-welcome");
+    } else if (currentLine === lines.length - 2) {
+      lineElement.classList.add("terminal-access");
+    } else {
+      lineElement.classList.add("terminal-prompt");
+    }
+    
     terminal.appendChild(lineElement);
     var cursorSpan = document.createElement("span");
     cursorSpan.classList.add("cursor");
     lineElement.appendChild(cursorSpan);
     function typeChar() {
       if (i < text.length) {
+        if (Math.random() > 0.98) {
+          setTimeout(typeChar, 50 + Math.random() * 100);
+          return;
+        }
+        
         lineElement.textContent = text.substring(0, i + 1);
         lineElement.appendChild(cursorSpan);
         i++;
-        setTimeout(typeChar, 10);
+        setTimeout(typeChar, 10 + Math.random() * 20);
       } else {
         lineElement.removeChild(cursorSpan);
-        setTimeout(callback, 300);
+        setTimeout(callback, 150 + (currentLine * 30));
       }
     }
     typeChar();
   }
+  
   function startTyping() {
     if (currentLine < lines.length) {
       typeLine(lines[currentLine], function () {
@@ -63,15 +130,28 @@ document.addEventListener("DOMContentLoaded", function () {
         startTyping();
       });
     } else {
-      var overlay_1 = document.getElementById("loadingOverlay");
-      overlay_1.classList.add("tv-off");
-      overlay_1.addEventListener("animationend", function () {
-        overlay_1.style.display = "none";
-        document.getElementById("content").style.display = "block";
-      });
+      setTimeout(() => {
+        completeAnimation();
+      }, 300);
     }
   }
-  startTyping();
+  
+  function handleKeydown(event) {
+    if (event.key === "Enter" && !animationCompleted) {
+      skipAnimation();
+    }
+  }
+  
+  document.addEventListener("keydown", handleKeydown);
+  
+  setTimeout(() => {
+    startTyping();
+  }, 400);
+  
+  var skipMessage = document.createElement("div");
+  skipMessage.classList.add("skip-message");
+  skipMessage.textContent = "Press Enter to skip";
+  document.getElementById("loadingOverlay").appendChild(skipMessage);
 });
 
 document.querySelectorAll(".skill-card").forEach((card) => {
@@ -80,6 +160,15 @@ document.querySelectorAll(".skill-card").forEach((card) => {
 
     document.querySelectorAll(".skill-card").forEach((otherCard) => {
       if (otherCard !== this) otherCard.classList.remove("active");
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const flipCards = document.querySelectorAll(".flip-card-inner");
+  flipCards.forEach((card) => {
+    card.addEventListener("click", function () {
+      card.classList.toggle("flipped");
     });
   });
 });

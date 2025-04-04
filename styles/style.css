@@ -5,6 +5,8 @@ body {
   margin: 0px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .tab {
@@ -26,11 +28,16 @@ body {
   justify-content: space-evenly;
   flex-wrap: wrap;
   min-height: 50vh;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .section-up {
   display: flex;
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   justify-content: center;
   align-items: center;
@@ -40,6 +47,7 @@ body {
   max-width: 40%;
   padding: 5%;
   height: 100vh;
+  box-sizing: border-box;
 }
 
 .scene {
@@ -54,15 +62,57 @@ body {
   align-items: center;
 }
 
+.mobile-stack {
+  display: flex;
+  flex-direction: row;
+}
+
 @media (max-width: 768px) {
+  .mobile-stack {
+    flex-direction: column !important;
+  }
+  
+  .section-cube {
+    order: 1;
+    height: auto !important;
+    min-height: 250px !important;
+    margin-bottom: 0;
+  }
+  
+  .section-text {
+    order: 2;
+    height: auto !important;
+    min-height: unset !important;
+    margin-top: 0;
+  }
+  
   .page {
     flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+    height: auto !important;
   }
 
   .section-up {
     max-width: 90%;
+    width: 100%;
     height: auto;
+    min-height: unset;
     padding: 20px;
+    margin: 0 0 20px 0;
+  }
+
+  .section-up:first-child {
+    margin-bottom: 10px;
+  }
+
+  .section-up:last-child {
+    margin-top: 0;
+  }
+
+  .scene {
+    width: 150px;
+    height: 150px;
   }
 
   .cube {
@@ -78,6 +128,7 @@ body {
 
   h1 {
     font-size: 1.5em;
+    text-align: center;
   }
 
   h2 {
@@ -85,4 +136,76 @@ body {
     line-height: 1.4;
     text-align: center;
   }
+  
+  .exp-page {
+    height: auto;
+    min-height: 100vh;
+    padding: 30px 10px;
+  }
+
+  .welcome-page {
+    height: auto !important;
+    min-height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-up {
+    padding: 15px;
+    min-height: unset;
+    max-width: 100%;
+  }
+  
+  .section-cube {
+    min-height: 200px !important;
+  }
+  
+  .section-text h2 {
+    margin-top: 10px;
+  }
+  
+  .scene {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .cube {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .cube-face {
+    width: 120px;
+    height: 120px;
+    font-size: 18px;
+  }
+  
+  h1 {
+    font-size: 1.3em;
+  }
+  
+  h2 {
+    font-size: 0.9em;
+  }
+  
+  .tab {
+    font-size: 14px;
+  }
+}
+
+.exp-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.welcome-page {
+  min-height: 100vh;
 }
