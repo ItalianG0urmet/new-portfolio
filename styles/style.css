@@ -1,0 +1,88 @@
+body {
+  user-select: none;
+  background-color: black;
+  color: aliceblue;
+  margin: 0px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.tab {
+  display: flex;
+  justify-content: left;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  width: 100%;
+  height: 20px;
+  padding: 5px;
+}
+
+.page {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  min-height: 50vh;
+}
+
+.section-up {
+  display: flex;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+  min-width: 50px;
+  max-width: 40%;
+  padding: 5%;
+  height: 100vh;
+}
+
+.scene {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.skill-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .page {
+    flex-direction: column;
+  }
+
+  .section-up {
+    max-width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .cube {
+    width: 150px;
+    height: 150px;
+  }
+
+  .cube-face {
+    width: 150px;
+    height: 150px;
+    font-size: 24px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  h2 {
+    font-size: 1em;
+    line-height: 1.4;
+    text-align: center;
+  }
+}
