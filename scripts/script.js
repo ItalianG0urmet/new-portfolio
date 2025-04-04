@@ -48,10 +48,10 @@ document.addEventListener("DOMContentLoaded", function () {
         lineElement.textContent = text.substring(0, i + 1);
         lineElement.appendChild(cursorSpan);
         i++;
-        setTimeout(typeChar, 20);
+        setTimeout(typeChar, 10);
       } else {
         lineElement.removeChild(cursorSpan);
-        setTimeout(callback, 500);
+        setTimeout(callback, 300);
       }
     }
     typeChar();
@@ -72,4 +72,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
   startTyping();
+});
+
+document.querySelectorAll(".skill-card").forEach((card) => {
+  card.addEventListener("click", function () {
+    this.classList.toggle("active");
+
+    document.querySelectorAll(".skill-card").forEach((otherCard) => {
+      if (otherCard !== this) otherCard.classList.remove("active");
+    });
+  });
 });
