@@ -1,29 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="smooth-scroll">
   <head>
     <title>Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/cube.css" />
     <link rel="stylesheet" href="styles/spark.css" />
     <link rel="stylesheet" href="styles/loading.css" />
     <link rel="stylesheet" href="styles/skill.css" />
     <link rel="stylesheet" href="styles/bar.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
   <body>
     <div id="loadingOverlay">
       <div id="terminal"></div>
     </div>
 
-    <div id="content" style="display: none;">
+    <div id="content" style="display: none">
       <!-- Welcome -->
       <div class="exp-page welcome-page">
         <div class="page mobile-stack">
           <div
             class="section-up section-cube"
-            style="justify-content: center; align-items: center; overflow: hidden;"
+            style="
+              justify-content: center;
+              align-items: center;
+              overflow: hidden;
+            "
           >
-            <div class="scene">
+            <div class="scene fade-in-scale">
               <div class="cube">
                 <div class="cube-face front">Linux</div>
                 <div class="cube-face back">Java</div>
@@ -35,25 +43,32 @@
             </div>
           </div>
           <div class="section-up section-text">
-            <h1>About me</h1>
-            <h2>
+            <h1 class="hidden">About me</h1>
+            <h2 class="hidden">
               I am an Italian student passionate about computer science. I've
               explored various areas of computer science to get a broad view and
-              figure out my specialization. I started with Java, then moved to C++
-              with debugging tools like GDB and Ghidra to understand code
+              figure out my specialization. I started with Java, then moved to
+              C++ with debugging tools like GDB and Ghidra to understand code
               internally. I wrote small x64 Assembly programs to deepen my
-              low-level knowledge. I also studied networking basics to understand
-              packet operations. Now, when coding, I usually have an idea of where
-              bugs might originate from.
+              low-level knowledge. I also studied networking basics to
+              understand packet operations. Now, when coding, I usually have an
+              idea of where bugs might originate from.
             </h2>
           </div>
         </div>
       </div>
 
+      <!-- Section Divider -->
+      <div class="section-divider with-icon fade-divider">
+        <div class="divider-line"></div>
+        <i class="fas fa-code divider-icon"></i>
+        <div class="divider-line"></div>
+      </div>
+
       <!-- Skills -->
       <div class="exp-page">
         <div class="skills-grid">
-          <div class="skill-card">
+          <div class="skill-card fade-left">
             <img src="img/java.png" alt="" class="skill-icon" />
             <div class="skill-content">
               <h3>Java</h3>
@@ -68,7 +83,7 @@
             <div class="ink-effect"></div>
           </div>
 
-          <div class="skill-card">
+          <div class="skill-card fade-in-scale stagger-delay-1">
             <img src="img/bug.png" alt="" class="skill-icon" />
             <div class="skill-content">
               <h3>C++/Debug</h3>
@@ -76,23 +91,23 @@
                 <p>
                   I've had multiple low-level programming experiences, starting
                   with C++ and debugging with tools like GDB, Ghidra, and
-                  x64Debugger. I can analyze x64 Assembly code and write programs
-                  that handle memory management.
+                  x64Debugger. I can analyze x64 Assembly code and write
+                  programs that handle memory management.
                 </p>
               </div>
             </div>
             <div class="ink-effect"></div>
           </div>
 
-          <div class="skill-card">
+          <div class="skill-card fade-right stagger-delay-2">
             <img src="img/linux.png" alt="" class="skill-icon" />
             <div class="skill-content">
               <h3>Linux</h3>
               <div class="skill-details">
                 <p>
-                  I've been using Linux as my main OS for years and know it well.
-                  I'm comfortable using it on servers, as I do that often. I even
-                  developed a tool to map a program's memory.
+                  I've been using Linux as my main OS for years and know it
+                  well. I'm comfortable using it on servers, as I do that often.
+                  I even developed a tool to map a program's memory.
                 </p>
               </div>
             </div>
@@ -101,52 +116,100 @@
         </div>
       </div>
 
+      <!-- Section Divider -->
+      <div class="section-divider fade-divider">
+        <div class="divider-line"></div>
+      </div>
+
       <!-- Projects -->
-      <div class="exp-page">
-        <div class="container">
-          <div class="project flip-card">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <div class="front-title">
-                  <h2>TextEditor Rust</h2>
-                </div>
-                <img src="img/editor.png" alt="TextEditor Rust" />
-              </div>
-              <div class="flip-card-back">
-                <h2>TextEditor Rust</h2>
-                <p>
-                  This is a text editor where I am experimenting with the Rust
-                  Iced library. The ultimate goal is to develop a strong
-                  understanding of Rust and how to interact with files.
-                </p>
+      <div id="projects" class="exp-page">
+        <h1 class="hidden">Projects</h1>
+        <div class="projects-grid">
+          <!-- Project cards with terminal-like style -->
+          <div class="project-card hidden">
+            <div class="project-header">
+              <span class="project-prompt">~/projects $</span>
+              <h3>Linux Memory Dumper</h3>
+            </div>
+            <div class="project-description">
+              <p>
+                This program, available on my GitHub, works similarly to lsof.
+                It collects information from the native /proc/ folder and
+                displays it in a CLI environment. It also has various flags,
+                like showing full paths or searching for specific files.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Ncurses</span>
+                <span class="tech-tag">C++</span>
+                <span class="tech-tag">Regex</span>
               </div>
             </div>
           </div>
 
-          <div class="project flip-card">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <div class="front-title">
-                  <h2>ProcessDumper</h2>
-                </div>
-                <img src="img/process.png" alt="ProcessDumper" />
+          <div class="project-card hidden stagger-delay-1">
+            <div class="project-header">
+              <span class="project-prompt">~/projects $</span>
+              <h3>GourLife</h3>
+            </div>
+            <div class="project-description">
+              <p>
+                This is a Minecraft plugin. It is available on my GitHub. It is
+                a hardcore plugin that gives every player a certain number of
+                lives. When a player kills someone, they gain a life, and when
+                someone dies, they lose a life. All the settings are in the
+                config.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Paper API</span>
+                <span class="tech-tag">Kotlin</span>
               </div>
-              <div class="flip-card-back">
-                <h2>ProcessDumper</h2>
-                <p>
-                  This program, available on my GitHub, works similarly to lsof.
-                  It collects information from the native /proc/ folder and
-                  displays it in a CLI environment. It also has various flags,
-                  like showing full paths or searching for specific files.
-                </p>
+            </div>
+          </div>
+
+          <div class="project-card hidden stagger-delay-2">
+            <div class="project-header">
+              <span class="project-prompt">~/projects $</span>
+              <h3>Text Editor</h3>
+            </div>
+            <div class="project-description">
+              <p>
+                This is a text editor where I am experimenting with the Rust
+                Iced library. The ultimate goal is to develop a strong
+                understanding of Rust and how to interact with files.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Rust</span>
+                <span class="tech-tag">Iced GUI</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Section Divider -->
+      <div class="section-divider with-icon fade-divider">
+        <div class="divider-line"></div>
+        <i class="fas fa-terminal divider-icon"></i>
+        <div class="divider-line"></div>
+      </div>
+
       <!-- Tab -->
-      <div class="tab">Welcome</div>
+      <div class="tab">
+        <div class="tab-left">
+          <i class="fas fa-terminal tab-icon"></i>
+          <span class="tab-text">Welcome</span>
+        </div>
+        <div class="tab-right">
+          <a
+            href="https://github.com/ItalianG0urmet/"
+            target="_blank"
+            class="github-link"
+          >
+            <i class="fab fa-github"></i>
+            <span class="github-text">ItalianG0urmet</span>
+          </a>
+        </div>
+      </div>
     </div>
 
     <script src="scripts/script.js"></script>
